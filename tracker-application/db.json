@@ -1,28 +1,59 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "email": "admin@example.com",
       "password": "admin123",
       "role": "admin"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "user",
       "email": "user@example.com",
       "password": "user123",
+      "role": "user"
+    },
+    {
+      "id": "cc0f",
+      "username": "shagun",
+      "email": "shagun",
+      "password": "shagun",
       "role": "user"
     }
   ],
   "tasks": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Implement Login",
       "description": "Create login functionality",
-      "status": "In Progress",
+      "status": "To Do",
+      "assignee": "admin",
+      "dueDate": "2024-03-30"
+    },
+    {
+      "id": "2",
+      "title": "Implement Logout",
+      "description": "Create logout functionality",
+      "status": "To Do",
+      "assignee": "admin",
+      "dueDate": "2024-03-30"
+    },
+    {
+      "id": "3",
+      "title": "Implement notification",
+      "description": "Create notification functionality",
+      "status": "To Do",
+      "assignee": "admin",
+      "dueDate": "2024-03-30"
+    },
+    {
+      "id": "4",
+      "title": "Implement delete",
+      "description": "Create delete functionality",
+      "status": "To Do",
       "assignee": "admin",
       "dueDate": "2024-03-30"
     }
   ]
-} 
+}

@@ -1,1 +1,89 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Task Dashboard</h1>
+        <div class="statistics">
+            <div class="stat-card">
+                <h3>To Do</h3>
+                <p>{{ todoTasks.length }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>In Progress</h3>
+                <p>{{ inProgressTasks.length }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Done</h3>
+                <p>{{ doneTasks.length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <input type="text" [(ngModel)]="searchTerm" (input)="searchTasks()" placeholder="Search tasks..."
+            class="search-input">
+        <button class="create-btn" (click)="createTask()">Create Task</button>
+    </div>
+
+    <div class="kanban-board">
+        <div class="task-column">
+            <h2>To Do</h2>
+            <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todoTasks"
+                [cdkDropListConnectedTo]="[inProgressList, doneList]" (cdkDropListDropped)="onDrop($event)"
+                class="task-list">
+                <div class="task-card" *ngFor="let task of todoTasks" cdkDrag>
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <div class="task-footer">
+                        <span>{{ task.assignee }}</span>
+                        <span>{{ task.dueDate }}</span>
+                    </div>
+                    <div class="task-actions">
+                        <button (click)="openTaskDetails(task)">Details</button>
+                        <button (click)="updateTask(task)">Edit</button>
+                        <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-column">
+            <h2>In Progress</h2>
+            <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="inProgressTasks"
+                [cdkDropListConnectedTo]="[todoList, doneList]" (cdkDropListDropped)="onDrop($event)" class="task-list">
+                <div class="task-card" *ngFor="let task of inProgressTasks" cdkDrag>
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <div class="task-footer">
+                        <span>{{ task.assignee }}</span>
+                        <span>{{ task.dueDate }}</span>
+                    </div>
+                    <div class="task-actions">
+                        <button (click)="openTaskDetails(task)">Details</button>
+                        <button (click)="updateTask(task)">Edit</button>
+                        <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-column">
+            <h2>Done</h2>
+            <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="doneTasks"
+                [cdkDropListConnectedTo]="[todoList, inProgressList]" (cdkDropListDropped)="onDrop($event)"
+                class="task-list">
+                <div class="task-card" *ngFor="let task of doneTasks" cdkDrag>
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <div class="task-footer">
+                        <span>{{ task.assignee }}</span>
+                        <span>{{ task.dueDate }}</span>
+                    </div>
+                    <div class="task-actions">
+                        <button (click)="openTaskDetails(task)">Details</button>
+                        <button (click)="updateTask(task)">Edit</button>
+                        <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

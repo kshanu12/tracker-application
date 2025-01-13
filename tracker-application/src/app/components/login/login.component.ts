@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, RouterLink],
+  standalone: true,
+  imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -13,10 +15,7 @@ export class LoginComponent {
   user: string = '';
   password: string = '';
   constructor(private router: Router, private authService: AuthService) {}
-  onLogin(){
-    console.log("Login");
-    console.log(this.user);
-    console.log(this.password);
+  onLogin() {
     this.authService.login({username: this.user, password: this.password}).subscribe({
       next: (response) => {
         if(response && response.length > 0){
