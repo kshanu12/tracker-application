@@ -104,26 +104,15 @@ export class DashboardComponent implements OnInit {
     }
     this.categorizeTasks();
   }
-
-  openTaskDetails(task: Task) {
-    console.log('Opening task details:', task);
-  }
-
+  
   createTask() {
-    this.router.navigate(['/create-task']);
+    this.router.navigate(['/task']);
     console.log('Creating new task');
   }
-
+  
   updateTask(task: Task) {
+    this.router.navigate(['/task'], { queryParams: { id: task.id } });
     console.log('Updating task:', task);
-    this.taskService.updateTask(task).subscribe({
-      next: () => {
-        this.loadTasks();
-      },
-      error: (error) => {
-        console.error('Error updating task:', error);
-      }
-    });
   }
 
   deleteTask(task: Task) {

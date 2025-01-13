@@ -37,7 +37,6 @@
                         <span>{{ task.dueDate }}</span>
                     </div>
                     <div class="task-actions">
-                        <button (click)="openTaskDetails(task)">Details</button>
                         <button (click)="updateTask(task)">Edit</button>
                         <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
                     </div>
@@ -57,7 +56,6 @@
                         <span>{{ task.dueDate }}</span>
                     </div>
                     <div class="task-actions">
-                        <button (click)="openTaskDetails(task)">Details</button>
                         <button (click)="updateTask(task)">Edit</button>
                         <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
                     </div>
@@ -78,7 +76,6 @@
                         <span>{{ task.dueDate }}</span>
                     </div>
                     <div class="task-actions">
-                        <button (click)="openTaskDetails(task)">Details</button>
                         <button (click)="updateTask(task)">Edit</button>
                         <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
                     </div>

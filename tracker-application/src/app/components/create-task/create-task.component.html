@@ -1,6 +1,6 @@
 <div class="create-task-container">
     <form (ngSubmit)="onSubmit()">
-        <h2>Create New Task</h2>
+        <h2>{{task.id ? 'Update Task' : 'Create New Task'}}</h2>
 
         <div class="form-group">
             <label for="title">Title:</label>
@@ -26,7 +26,8 @@
         </div>
 
         <div class="button-group">
-            <button type="submit" class="submit-btn">Create Task</button>
+            <button type="submit" class="submit-btn">{{task.id ? 'Update Task' : 'Create
+                Task'}}</button>
             <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
         </div>
     </form>
