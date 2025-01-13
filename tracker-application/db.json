@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "user",
+      "email": "user@example.com",
+      "password": "user123",
+      "role": "user"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Implement Login",
+      "description": "Create login functionality",
+      "status": "In Progress",
+      "assignee": "admin",
+      "dueDate": "2024-03-30"
+    }
+  ]
+} 
