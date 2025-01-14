@@ -5,6 +5,7 @@ import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from 
 import { Task, TaskService } from '../../services/task.service';
 import { Router } from '@angular/router';
 import { KanbanBoardCardComponent } from '../kanban-board-card/kanban-board-card.component';
+import { User, UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,11 +22,15 @@ export class DashboardComponent implements OnInit {
   searchTerm: string = '';
   isAdmin: boolean = false;
   filteredTasks: Task[] = [];
+  users: User[] = [];
+  priorityFilter: string = '';
+  assigneeFilter: string = '';
 
-  constructor(private taskService: TaskService, private router: Router) {}
+  constructor(private taskService: TaskService, private router: Router, private userService: UsersService) {}
 
   ngOnInit() {
     this.loadTasks();
+    this.loadUsers();
     this.isAdmin = localStorage.getItem('userRole') === 'admin';
     // this.isAdmin = true;
   }
@@ -39,6 +44,17 @@ export class DashboardComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error loading tasks:', error);
+      }
+    });
+  }
+
+  loadUsers() {
+    this.userService.getUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (error) => {
+        console.error('Error loading users:', error);
       }
     });
   }
@@ -100,9 +116,16 @@ export class DashboardComponent implements OnInit {
       this.filteredTasks = this.tasks.filter(task =>
         task.title.toLowerCase().includes(searchTermLower) ||
         task.description.toLowerCase().includes(searchTermLower) ||
-        task.assignee.toLowerCase().includes(searchTermLower)
+        task.assignee.toLowerCase().includes(searchTermLower) ||
+        task.priority.toLowerCase().includes(searchTermLower)
       );
     }
+    this.filteredTasks = this.filteredTasks.filter(task => {
+      return (
+        (this.priorityFilter ? task.priority === this.priorityFilter : true) &&
+        (this.assigneeFilter ? task.assignee === this.assigneeFilter : true)
+      );
+    });
     this.categorizeTasks();
   }
   
