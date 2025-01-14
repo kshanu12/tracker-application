@@ -9,6 +9,7 @@ export interface Task {
   status: 'To Do' | 'In Progress' | 'Done';
   assignee: string;
   dueDate: string;
+  priority: string;
 }
 
 @Injectable({

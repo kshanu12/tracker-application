@@ -1,0 +1,36 @@
+.task-header{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+}
+
+.task-title-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.task-footer {
+    margin-top: 2rem;
+    font-size: .75rem;
+    color: #666;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.task-actions button {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+}

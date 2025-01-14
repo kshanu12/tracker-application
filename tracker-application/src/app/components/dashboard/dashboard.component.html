@@ -30,16 +30,8 @@
                 [cdkDropListConnectedTo]="[inProgressList, doneList]" (cdkDropListDropped)="onDrop($event)"
                 class="task-list">
                 <div class="task-card" *ngFor="let task of todoTasks" cdkDrag>
-                    <h3>{{ task.title }}</h3>
-                    <p>{{ task.description }}</p>
-                    <div class="task-footer">
-                        <span>{{ task.assignee }}</span>
-                        <span>{{ task.dueDate }}</span>
-                    </div>
-                    <div class="task-actions">
-                        <button (click)="updateTask(task)">Edit</button>
-                        <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
-                    </div>
+                    <app-kanban-board-card [task]="task" [isAdmin]="isAdmin" (updateTask)="updateTask($event)"
+                        (deleteTask)="deleteTask($event)"></app-kanban-board-card>
                 </div>
             </div>
         </div>
@@ -49,16 +41,8 @@
             <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="inProgressTasks"
                 [cdkDropListConnectedTo]="[todoList, doneList]" (cdkDropListDropped)="onDrop($event)" class="task-list">
                 <div class="task-card" *ngFor="let task of inProgressTasks" cdkDrag>
-                    <h3>{{ task.title }}</h3>
-                    <p>{{ task.description }}</p>
-                    <div class="task-footer">
-                        <span>{{ task.assignee }}</span>
-                        <span>{{ task.dueDate }}</span>
-                    </div>
-                    <div class="task-actions">
-                        <button (click)="updateTask(task)">Edit</button>
-                        <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
-                    </div>
+                    <app-kanban-board-card [task]="task" [isAdmin]="isAdmin" (updateTask)="updateTask($event)"
+                        (deleteTask)="deleteTask($event)"></app-kanban-board-card>
                 </div>
             </div>
         </div>
@@ -69,16 +53,8 @@
                 [cdkDropListConnectedTo]="[todoList, inProgressList]" (cdkDropListDropped)="onDrop($event)"
                 class="task-list">
                 <div class="task-card" *ngFor="let task of doneTasks" cdkDrag>
-                    <h3>{{ task.title }}</h3>
-                    <p>{{ task.description }}</p>
-                    <div class="task-footer">
-                        <span>{{ task.assignee }}</span>
-                        <span>{{ task.dueDate }}</span>
-                    </div>
-                    <div class="task-actions">
-                        <button (click)="updateTask(task)">Edit</button>
-                        <button *ngIf="isAdmin" (click)="deleteTask(task)">Delete</button>
-                    </div>
+                    <app-kanban-board-card [task]="task" [isAdmin]="isAdmin" (updateTask)="updateTask($event)"
+                        (deleteTask)="deleteTask($event)"></app-kanban-board-card>
                 </div>
             </div>
         </div>

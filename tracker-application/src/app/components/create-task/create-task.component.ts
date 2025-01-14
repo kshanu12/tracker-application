@@ -19,7 +19,8 @@ export class CreateTaskComponent {
     description: '',
     status: 'To Do',
     assignee: '',
-    dueDate: ''
+    dueDate: '',
+    priority: ''
   };
 
   users: User[] = [];
