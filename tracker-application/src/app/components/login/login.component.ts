@@ -24,13 +24,14 @@ export class LoginComponent {
     this.authService.login({username: this.user, password: this.password}).subscribe({
       next: (response) => {
         if(response && response.length > 0){
+          localStorage.setItem('currentUser', JSON.stringify(response[0]));
           this.router.navigate(['/dashboard']);
         }
         else{
           this.error = "*Login failed. Please check your username and password.";
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error(error);
       }
     });

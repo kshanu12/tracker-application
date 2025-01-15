@@ -6,6 +6,7 @@ import { Task, TaskService } from '../../services/task.service';
 import { Router } from '@angular/router';
 import { KanbanBoardCardComponent } from '../kanban-board-card/kanban-board-card.component';
 import { User, UsersService } from '../../services/users.service';
+import { authGuard } from '../../services/rbac.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,8 +32,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.loadTasks();
     this.loadUsers();
-    this.isAdmin = localStorage.getItem('userRole') === 'admin';
-    // this.isAdmin = true;
+    this.isAdmin = authGuard('admin');
   }
 
   loadTasks() {

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../../services/task.service';
 import { CommonModule } from '@angular/common';
 import { PriorityIconComponent } from '../priority-icon/priority-icon.component';
+import { authGuard } from '../../services/rbac.service';
 
 @Component({
   selector: 'app-kanban-board-card',
@@ -38,5 +39,8 @@ export class KanbanBoardCardComponent {
       const daysLeft = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
       this.timeLeft = `${daysLeft} day${daysLeft !== 1 ? 's' : ''} left`;
     }
+  }
+  callAuthGuard(role: string){
+    return authGuard(role);
   }
 }
