@@ -1,17 +1,23 @@
-<div class="login-container">
-    <form (ngSubmit)="onLogin()">
-        <h2>Login</h2>
-        <div>
-            <label for="username">Username:{{user}}</label>
-            <input type="text" id="username" [(ngModel)]="user" name="username" required>
+<div class="login-page">
+    <div class="login-page-container">
+        <img src="/login-animate.gif" alt="Logo" class="logo">
+
+        <div class="login-container">
+            <form (ngSubmit)="onLogin()">
+                <h1>Login</h1>
+                <div>
+                    <input type="text" id="username" [(ngModel)]="user" name="username" required placeholder="Username">
+                </div>
+                <div>
+                    <input type="password" id="password" [(ngModel)]="password" name="password" required
+                        placeholder="Password">
+                </div>
+                <button type="submit">Login</button>
+                <div style="color: red;font-size: .75rem;">{{error}}</div>
+                <p class="login-link">
+                    Don't have an account? <a routerLink="/register">Register here</a>
+                </p>
+            </form>
         </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" [(ngModel)]="password" name="password" required>
-        </div>
-        <button type="submit">Login</button>
-        <p class="login-link">
-            Don't have an account? <a routerLink="/register">Register here</a>
-        </p>
-    </form>
+    </div>
 </div>

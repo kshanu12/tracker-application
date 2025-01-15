@@ -14,17 +14,20 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   user: string = '';
   password: string = '';
+  error: string = '';
   constructor(private router: Router, private authService: AuthService) {}
   onLogin() {
+    if(this.user === '' || this.password === ''){
+      this.error = "*Please enter a username and password";
+      return;
+    }
     this.authService.login({username: this.user, password: this.password}).subscribe({
       next: (response) => {
         if(response && response.length > 0){
-          console.log("Login successful");
-          console.log(response);
           this.router.navigate(['/dashboard']);
         }
         else{
-          alert("Login failed");
+          this.error = "*Login failed. Please check your username and password.";
         }
       },
       error: (error) => {
