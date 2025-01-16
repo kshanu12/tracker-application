@@ -30,7 +30,6 @@ export class KanbanBoardCardComponent {
     const timeDiff = dueDate.getTime() - now.getTime();
     
     this.timeLeftColor = timeDiff > 0 ? 'green' : 'red';
-    console.log(timeDiff);
 
     if (timeDiff < 0) {
       const overdueDays = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60 * 24)));

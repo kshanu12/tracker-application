@@ -31,7 +31,7 @@ export class LoginComponent {
           this.error = "*Login failed. Please check your username and password.";
         }
       },
-      error: (error: any) => {
+      error: (error) => {
         console.error(error);
       }
     });

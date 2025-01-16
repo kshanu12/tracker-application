@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { KanbanBoardCardComponent } from '../kanban-board-card/kanban-board-card.component';
 import { User, UsersService } from '../../services/users.service';
 import { authGuard } from '../../services/rbac.service';
+import { Notification, NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,8 +27,10 @@ export class DashboardComponent implements OnInit {
   users: User[] = [];
   priorityFilter: string = '';
   assigneeFilter: string = '';
+  notifications: Notification[] = [];
+  showNotifications: boolean = false;
 
-  constructor(private taskService: TaskService, private router: Router, private userService: UsersService) {}
+  constructor(private taskService: TaskService, private router: Router, private userService: UsersService, private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.loadTasks();
@@ -82,9 +85,23 @@ export class DashboardComponent implements OnInit {
         task.status = newStatus;
         this.taskService.updateTask(task).subscribe({
           next: () => {
-            if (this.isAdmin) {
-              console.log(`Task ${task.title} status changed to ${newStatus}`);
+            let adminNotification;
+            const notification = {
+              message: `Task ${task.title} status changed to ${newStatus}`,
+              username: task.assignee,
+              timestamp: new Date(),
+              read: false
+            };
+            if (task.assignee !== 'admin') {
+              adminNotification = {
+                message: `Task ${task.title} status changed to ${newStatus} for ${task.assignee}`,
+                username: 'admin',
+                timestamp: new Date(),
+                read: false
+              };
+              this.notificationService.addNotification(adminNotification).subscribe();
             }
+            this.notificationService.addNotification(notification).subscribe();
           },
           error: (error) => {
             console.error('Error updating task:', error);
@@ -97,11 +114,11 @@ export class DashboardComponent implements OnInit {
 
   getStatusFromContainerId(containerId: string): 'To Do' | 'In Progress' | 'Done' | null {
     switch (containerId) {
-      case 'todoList':
+      case 'cdk-drop-list-0':
         return 'To Do';
-      case 'inProgressList':
+      case 'cdk-drop-list-1':
         return 'In Progress';
-      case 'doneList':
+      case 'cdk-drop-list-2':
         return 'Done';
       default:
         return null;
@@ -128,12 +145,12 @@ export class DashboardComponent implements OnInit {
     });
     this.categorizeTasks();
   }
-  
+
   createTask() {
     this.router.navigate(['/task']);
     console.log('Creating new task');
   }
-  
+
   updateTask(task: Task) {
     this.router.navigate(['/task'], { queryParams: { id: task.id } });
     console.log('Updating task:', task);
@@ -150,5 +167,30 @@ export class DashboardComponent implements OnInit {
         }
       });
     }
+  }
+
+  callNotificationService() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
+    this.notificationService.getNotifications(currentUser.role).subscribe(
+      (notifications) => {
+        console.log({ notifications });
+        this.notifications = notifications;
+        this.notifications.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      },
+      (error) => {
+        console.error('Error fetching notifications:', error);
+      }
+    );
+  }
+
+  openNotifications() {
+    this.showNotifications = !this.showNotifications;
+    this.callNotificationService();
+  }
+
+  markAsRead(notification: Notification) {
+    console.log({ notification });
+    this.notificationService.markAsRead(notification).subscribe();
+    this.callNotificationService();
   }
 }
