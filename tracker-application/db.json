@@ -4,7 +4,7 @@
       "id": "1",
       "username": "admin",
       "email": "admin@example.com",
-      "password": "admin123",
+      "password": "admin",
       "role": "admin"
     },
     {
@@ -20,6 +20,27 @@
       "email": "shagun",
       "password": "shagun",
       "role": "user"
+    },
+    {
+      "id": "59a1",
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user"
+    },
+    {
+      "id": "2ba4",
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user"
+    },
+    {
+      "id": "b996",
+      "username": "escanor",
+      "email": "escanor@gmail.com",
+      "password": "qwerty",
+      "role": "user"
     }
   ],
   "tasks": [
@@ -27,7 +48,7 @@
       "id": "1",
       "title": "Implement Login8",
       "description": "Create login functionality",
-      "status": "To Do",
+      "status": "Done",
       "assignee": "user",
       "dueDate": "2024-03-30",
       "priority": "Low"
@@ -36,7 +57,7 @@
       "id": "2",
       "title": "Implement Logout3",
       "description": "Create logout functionality",
-      "status": "In Progress",
+      "status": "Done",
       "assignee": "admin",
       "dueDate": "2024-03-30",
       "priority": "Medium"
@@ -45,7 +66,7 @@
       "id": "3",
       "title": "Implement notification",
       "description": "Create notification functionality",
-      "status": "To Do",
+      "status": "Done",
       "assignee": "shagun",
       "dueDate": "2024-03-30",
       "priority": "Low"
@@ -54,11 +75,96 @@
       "id": "4",
       "title": "Implement delete",
       "description": "Create delete functionality",
-      "status": "To Do",
+      "status": "Done",
       "assignee": "admin",
       "dueDate": "2024-03-30",
       "priority": "Low"
     }
   ],
-  "notifications": []
+  "notifications": [
+    {
+      "id": "8fc2",
+      "message": "Task Implement Logout3 status changed to Done",
+      "username": "admin",
+      "timestamp": "2025-01-16T10:01:26.528Z",
+      "read": false
+    },
+    {
+      "id": "5f76",
+      "message": "Task Implement Logout3 status changed to In Progress",
+      "username": "admin",
+      "timestamp": "2025-01-16T10:01:28.150Z",
+      "read": false
+    },
+    {
+      "id": "f91b",
+      "message": "Task Implement Logout3 status changed to Done",
+      "username": "admin",
+      "timestamp": "2025-01-16T10:01:30.511Z",
+      "read": false
+    },
+    {
+      "id": "9e94",
+      "message": "Task Implement delete status changed to In Progress",
+      "username": "admin",
+      "timestamp": "2025-01-16T10:01:32.677Z",
+      "read": false
+    },
+    {
+      "id": "516e",
+      "message": "Task Implement delete status changed to To Do",
+      "username": "admin",
+      "timestamp": "2025-01-16T10:01:34.603Z",
+      "read": false
+    },
+    {
+      "id": "16f6",
+      "message": "Task Implement Login8 status changed to In Progress for user",
+      "username": "admin",
+      "timestamp": "2025-01-16T10:01:35.995Z",
+      "read": false
+    },
+    {
+      "id": "b035",
+      "message": "Task Implement Login8 status changed to In Progress",
+      "username": "user",
+      "timestamp": "2025-01-16T10:01:35.995Z",
+      "read": false
+    },
+    {
+      "id": "843e",
+      "message": "Task Implement delete status changed to Done",
+      "username": "admin",
+      "timestamp": "2025-01-16T10:01:38.424Z",
+      "read": false
+    },
+    {
+      "id": "d076",
+      "message": "Task Implement Login8 status changed to To Do for user",
+      "username": "admin",
+      "timestamp": "2025-01-16T13:45:26.413Z",
+      "read": false
+    },
+    {
+      "id": "3aa5",
+      "message": "Task Implement Login8 status changed to To Do",
+      "username": "user",
+      "timestamp": "2025-01-16T13:45:26.413Z",
+      "read": false
+    },
+    {
+      "id": "83e3",
+      "message": "Task Implement notification status changed to Done for shagun",
+      "username": "admin",
+      "timestamp": "2025-01-16T14:12:09.948Z",
+      "read": false
+    },
+    {
+      "id": "e57f",
+      "message": "Task Implement notification status changed to Done",
+      "username": "shagun",
+      "timestamp": "2025-01-16T14:12:09.948Z",
+      "read": false
+    }
+  ]
 }

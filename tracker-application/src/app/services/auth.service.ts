@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,30 @@ export class AuthService {
 
   register(user: {username: string, email: string, password: string}): Observable<any> {
     return this.http.post(`${this.apiUrl}/users`, {...user, role: 'user'});
+  }
+
+  changePassword(username: string, currentPassword: string, newPassword: string): Observable<any> {
+    return this.http
+      .get<any[]>(`${this.apiUrl}/users?username=${username}`)
+      .pipe(
+        map((users: any[]) => {
+          if (users.length > 0) {
+            const user = users[0];
+            if (user.password === currentPassword) {
+              return { id: user.id, username: user.username, password: newPassword };
+            } else {
+              throw 'Current password is incorrect';
+            }
+          } else {
+            throw 'User not found';
+          }
+        }),
+        map(user => {
+          return this.http.patch(`${this.apiUrl}/users/${user.id}`, { password: user.password }).subscribe(
+            () => true,
+            () => { throw 'Failed to update password'; }
+          );
+        })
+      );
   }
 } 

@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   assigneeFilter: string = '';
   notifications: Notification[] = [];
   showNotifications: boolean = false;
+  showProfile: boolean = false;
 
   constructor(private taskService: TaskService, private router: Router, private userService: UsersService, private notificationService: NotificationService) { }
 
@@ -192,5 +193,14 @@ export class DashboardComponent implements OnInit {
     console.log({ notification });
     this.notificationService.markAsRead(notification).subscribe();
     this.callNotificationService();
+  }
+
+  resetPassword() {
+    this.router.navigate(['/reset-password']);
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
   }
 }
